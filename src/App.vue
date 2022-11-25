@@ -1,28 +1,42 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="min-h-screen bg-gray-100">
+    <EmrHeader></EmrHeader>
+    <div class="flex">
+      <EmrSideBar></EmrSideBar>
+      <div class="w-full">
+        Reservation
+        <PatientMainView></PatientMainView>
+      </div>
+      <div class="w-full">
+        Reservation check
+        <PatientReservation></PatientReservation>
+      </div>
+      <div class="w-full">
+        previous record
+        <PatientPreviousRecord></PatientPreviousRecord>
+      </div>
+    </div>
   </div>
 </template>
 
+    
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import EmrSideBar from "./components/EmrSideBar.vue";
+import EmrHeader from "./components/EmrHeader.vue";
+import PatientMainView from "./components/PatientMainView.vue";
+import PatientReservation from "./components/PatientReservation.vue";
+import PatientPreviousRecord from "./components/PatientPreviousRecord.vue";
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
-  }
-}
-</script>
+    EmrSideBar,
+    EmrHeader,
+    PatientMainView,
+    PatientReservation,
+    PatientPreviousRecord,
+  },
+};
+</script> 
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
