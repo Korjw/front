@@ -200,10 +200,6 @@
 
 <script>
 import axios from "axios";
-//import Cookies from "js-cookie";
-
-axios.defaults.headers.post["Content-Type"] = "application/json;charset=utf-8";
-axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
 
 export default {
   data() {
@@ -218,30 +214,16 @@ export default {
 
   methods: {
     submitAppointment() {
-      //const accessToken = Cookies.get("access");
-      //const accessTokenJSON = JSON.parse(atob(accessToken.split(".")[1]));
-
       axios
-        .post(
-          "/emr/api/appointment/",
-          {
-            //doctor_idx: accessTokenJSON.user_id,
-            category: this.category,
-            doctor_name: this.doctor_name,
-            status: this.status,
-            medical_department: this.medical_department,
-            reservation_date: this.reservation_date,
-          },
-          {
-            withCredentials: true,
-            crossDomain: true,
-            credentials: "access",
-            headers: {
-              //Authorization: "Bearer " + accessToken,
-              ContentType: "application/json",
-            },
-          }
-        )
+        .post("http://localhost:8000/emr/api/appointment/", {
+          id: 1,
+          patient_id: 1,
+          doctor_id: 1,
+          category: this.category,
+          status: this.status,
+          medical_department: this.medical_department,
+          begin_at: this.reservation_date,
+        })
         .then((res) => {
           console.log(res.data);
         })
