@@ -11,7 +11,7 @@
         >
           <button
             v-for="emr_for_date in emrList"
-            :key="emr_for_date"
+            :key="emr_for_date.begin_time"
             type="button"
             class="items-center justify-between p-5 font-medium text-left border border-b-0 border-gray-200 rounded-t-lg dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white"
             @click="optionShow(emr_for_date)"
@@ -126,7 +126,7 @@
                     <span
                       class="font-bold rounded text-gray-900 dark:text-white bg-green-800 p-1 mx-2"
                     >
-                      {{ medicine_unit }} 처방 단위
+                      {{ medicine.medicine_unit }} 처방 단위
                     </span>
                     {{ medicine.medicine_dose_unit }} 복용단위<i
                       class="fa-solid fa-x"
@@ -350,13 +350,13 @@ export default {
 
   created() {
     const accessToken = Cookies.get("access");
-    const accessTokenJSON = JSON.parse(atob(accessToken.split(".")[1]));
+    //const accessTokenJSON = JSON.parse(atob(accessToken.split(".")[1]));
 
     axios
       .post(
-        "/emr/patient/api/emr/list", //Medical Reocrd
+        "http://127.0.0.1:8001/emr/patient/api/emr/list", //Medical Reocrd
         {
-          patient_idx: accessTokenJSON.user_id,
+          patient_idx: 1,
           begin_at: this.selectedDate,
         },
         {
@@ -387,7 +387,7 @@ export default {
 
     optionShow(key) {
       const accessToken = Cookies.get("access");
-      const accessTokenJSON = JSON.parse(atob(accessToken.split(".")[1]));
+      //const accessTokenJSON = JSON.parse(atob(accessToken.split(".")[1]));
 
       if (key.begin_time == this.searchDate.begin_time) {
         this.is_show = !this.is_show;
@@ -396,9 +396,9 @@ export default {
 
       axios
         .post(
-          "/emr/api/symptom/list/", //Symptoms
+          "http://127.0.0.1:8001/emr/api/symptom/list/", //Symptoms
           {
-            patient_idx: accessTokenJSON.user_id,
+            patient_idx: 1,
             begin_at: this.selectedDate,
           },
           {
@@ -419,9 +419,9 @@ export default {
 
       axios
         .post(
-          "/emr/patient/emr/medicine/list", //medicine
+          "http://127.0.0.1:8001/emr/patient/emr/medicine/list", //medicine
           {
-            patient_idx: accessTokenJSON.user_id,
+            patient_idx: 1,
             begin_at: this.selectedDate,
           },
           {

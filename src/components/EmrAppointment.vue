@@ -40,7 +40,7 @@
             >
               <option
                 v-for="doctor in doctor_list"
-                :key="doctor"
+                :key="doctor.name"
                 v-text="
                   'subject : ' + doctor.subject + '      name : ' + doctor.name
                 "
@@ -129,7 +129,7 @@ export default {
           subject: "test2",
         },
       ],
-      reservation_date: new Date(),
+      reservation_date: "",
     };
   },
 
@@ -168,13 +168,12 @@ export default {
     },
     submitAppointment() {
       const accessToken = Cookies.get("access");
-      const accessTokenJSON = JSON.parse(atob(accessToken.split(".")[1]));
 
       axios
         .post(
           "http://127.0.0.1:8001/emr/patient/api/appointment/",
           {
-            patient_id: accessTokenJSON.user_id,
+            patient_id: 1,
             doctor_id: this.select_doctor.id,
             category: this.category,
             status: this.status,

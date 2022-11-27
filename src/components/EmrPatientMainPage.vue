@@ -105,7 +105,7 @@ export default {
       ],
       appoList: [
         {
-          id: 0,
+          id: 1,
           patient_id: 1,
           doctor_id: 1,
           begin_at: "2021-11-05",
@@ -113,7 +113,7 @@ export default {
           status: "bad",
         },
         {
-          id: 0,
+          id: 2,
           patient_id: 2,
           doctor_id: 2,
           begin_at: "2021-11-03",
@@ -121,7 +121,7 @@ export default {
           status: "bad",
         },
         {
-          id: 0,
+          id: 3,
           patient_id: 3,
           doctor_id: 3,
           begin_at: "2021-11-04",
@@ -164,13 +164,13 @@ export default {
   watch: {
     selectedDate() {
       const accessToken = Cookies.get("access");
-      const accessTokenJSON = JSON.parse(atob(accessToken.split(".")[1]));
+      //const accessTokenJSON = JSON.parse(atob(accessToken.split(".")[1]));
 
       axios
         .post(
-          "/emr/patient/api/appointment/list",
+          "http://127.0.0.1:8001/emr/patient/api/appointment/list",
           {
-            patient_id: accessTokenJSON.user_id,
+            patient_id: 1,
             begin_at: this.selectedDate,
           },
           {
